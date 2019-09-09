@@ -1,0 +1,20 @@
+npm init -y
+
+yarn add
+express
+body-parser
+cors
+consign
+
+sequelize
+pg pg-hstore
+
+nodemon
+path
+bcryptjs
+njwt
+jsonwebtoken
+
+  // .sync({ force: true })
+
+  //git pull https://github.com/amilton1313/def_back.git

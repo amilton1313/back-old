@@ -3,7 +3,7 @@ const AgendaTelefonica = require('../models/mo_agendaTelefonica')
 exports.getTelefonesByNome = (req, res, next) => {
 
 	const { nome } = req.params
-	const busca = "%" + nome + "%"
+	const busca = "%" + nome.toUpperCase() + "%"
 
 	AgendaTelefonica.sequelize.query(`
 	select array_to_json(array_agg(row_to_json(emp))) contatos
@@ -19,7 +19,7 @@ exports.getTelefonesByNome = (req, res, next) => {
 			) contatos
 
 		from pessoas pes
-		where nome like :busca
+		where upper(nome) like :busca
 
 		union all
 
@@ -35,10 +35,10 @@ exports.getTelefonesByNome = (req, res, next) => {
 			) contatos
 
 		from agenda_telefonica pesage
-		where nome like :busca
-		or contato like :busca
-		or referencia_assunto like :busca
-		or observacao like :busca
+		where upper(nome) like :busca
+		or upper(contato) like :busca
+		or upper(referencia_assunto) like :busca
+		or upper(observacao) like :busca
 		order by nome
 		
 	) emp

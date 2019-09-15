@@ -90,6 +90,21 @@ exports.getPessoas = (req, res, next) => {
     })
 }
 
+exports.getPessoaByCnpj = (req, res, next) => {
+  const { cnpj } = req.params
+
+  Pessoa.sequelize.query(`select *
+  from pessoas
+  where cpf_cnpj = :cnpj`,
+  { replacements: { cnpj } })
+    .then(pessoa => {
+      res.status(200).json(pessoa[0])
+    })
+    .catch(err => {
+      res.status(500).send({ message: "Ocorreu um erro ao buscar o registro" });
+    });
+}
+
 exports.getPessoaByCpf = (req, res, next) => {
 
   const { cpf } = req.params

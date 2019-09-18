@@ -7,6 +7,7 @@ const md_auth = require('../util/autenticacao')
 const router = express.Router()
 
 router.get('/indicesintranet', indiceDataController.getIndicesIntranet)
+router.post('/indicesintranetperiodo', indiceDataController.getIndicesIntranetPeriodo)
 router.get('/indicedatas', indiceDataController.getIndiceDatas)
 router.get('/indicedata/:data', indiceDataController.getIndiceDataByData)
 router.post('/indicedata', md_auth.auth, indiceDataController.addIndiceData)

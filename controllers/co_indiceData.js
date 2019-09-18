@@ -132,6 +132,47 @@ from(
     })
 }
 
+exports.getIndicesIntranetPeriodo = (req, res, next) => {
+
+  const body = req.body
+
+  const {dataOne, dataTwo} = req.body
+  console.log('req ',req.body)
+
+  // const hoje = new Date()
+  // const dataAtual = hoje.getFullYear() + '-' + (hoje.getMonth() + 1) + '-01'
+
+  IndiceData.sequelize.query(`
+    select id1.indice_data, id1.indice_data_valor as resValor,
+    id2.indice_data_valor as resIndice, id3.indice_data_valor as comValor,
+    id4.indice_data_valor as comIndice
+    from indices_datas id1
+
+    left join indices_datas id2
+    on id1.indice_data = id2.indice_data 
+    and id2.id_indice = 61
+
+    left join indices_datas id3
+    on id1.indice_data = id3.indice_data 
+    and id3.id_indice = 62
+
+    left join indices_datas id4
+    on id1.indice_data = id4.indice_data 
+    and id4.id_indice = 63
+
+    where id1.indice_data between :dataOne and :dataTwo
+    and id1.id_indice = 60
+  `,
+  { replacements: { dataOne, dataTwo } })
+    .then(indiceDatas => {
+      res.status(200).json(indiceDatas[0])
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json('Data não encontrada.')
+    })
+}
+
 
 
 

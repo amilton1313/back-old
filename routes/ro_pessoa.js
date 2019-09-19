@@ -16,5 +16,4 @@ router.post('/pessoa', md_auth.auth, pessoaController.addPessoa)
 router.put('/pessoa/:id', md_auth.auth, pessoaController.updPessoa)
 router.delete('/pessoa/:id', md_auth.auth, pessoaController.delPessoa)
 
-
 module.exports = router

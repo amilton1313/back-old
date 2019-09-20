@@ -6,11 +6,10 @@ const md_auth = require('../util/autenticacao')
 
 const router = express.Router();
 
-router.get('/pessoa/:id', md_auth.auth, pessoaContatoController.getPessoaContatoById)
+router.get('/pessoacontato/:id', md_auth.auth, pessoaContatoController.getPessoaContatoById)
 
-router.post('/pessoa', md_auth.auth, pessoaContatoController.addPessoaContato)
-router.put('/pessoa/:id', md_auth.auth, pessoaContatoController.updPessoaContato)
-router.delete('/pessoa/:id', md_auth.auth, pessoaContatoController.delPessoaContato)
-
+router.post('/pessoacontato', md_auth.auth, pessoaContatoController.addPessoaContato)
+router.put('/pessoacontato/:id', md_auth.auth, pessoaContatoController.updPessoaContato)
+router.delete('/pessoacontato/:id', md_auth.auth, pessoaContatoController.delPessoaContato)
 
 module.exports = router

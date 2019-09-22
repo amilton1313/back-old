@@ -137,7 +137,6 @@ exports.getIndicesIntranetPeriodo = (req, res, next) => {
   const body = req.body
 
   const {dataOne, dataTwo} = req.body
-  console.log('req ',req.body)
 
   // const hoje = new Date()
   // const dataAtual = hoje.getFullYear() + '-' + (hoje.getMonth() + 1) + '-01'
